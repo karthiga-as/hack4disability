@@ -1,0 +1,10 @@
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\aspectj\LoggingAspect.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\repository\EventRepository.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\controller\EventController.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\exceptions\EventAlreadyExistsException.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\EventServiceApplication.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\service\EventService.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\service\EventServiceImpl.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\config\SwaggerConfig.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\model\OutreachEvent.java
+C:\UI\Rest\OutreachEventService\src\main\java\com\cts\outreach\exceptions\EventNotFoundException.java

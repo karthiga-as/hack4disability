@@ -1,0 +1,27 @@
+ 
+
+spring:
+
+  data:
+
+    mongodb:
+
+#      authentication-database: dbAdmin
+
+     # username: fse
+
+      #password: fse123
+
+      database: admin
+
+      port: 27017
+
+      host: localhost
+
+  application:
+
+    name: UserService
+
+server:
+
+  port: 8083
