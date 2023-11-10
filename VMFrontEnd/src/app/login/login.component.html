@@ -1,0 +1,54 @@
+<div class="app-container">
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark lime w-100 z-depth-2">
+    <mdb-navbar-brand>
+      <a class="navbar-brand text-dark font-weight-bold pl-1" href="#">{{title}}</a>
+    </mdb-navbar-brand>
+  </mdb-navbar>
+  <section class="section feature-box">
+    <!--Grid row-->
+    <div class="row pt-5 login-container">
+
+      <p class="section-description lead grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi,
+        veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam. Quia, minima?</p>
+
+      <div class="col-md-6 text-center text-lg-center">
+        <img src="https://mdbootstrap.com/img/Photos/Others/screens-section.jpg" alt="" class="img-fluid z-depth-0">
+      </div>
+      <div class="col-md-5">
+        <mdb-card>
+          <mdb-card-header class="lime white-text text-center text-dark font-weight-bold py-3">
+            SIGN IN
+          </mdb-card-header>
+          <mdb-body class="px-md-5 pt-0">
+            <div *ngIf="invalidCredentialMsg" [ngClass]="error" class="red-text font-weight-bold">{{invalidCredentialMsg}}</div>
+            <form class="text-center" style="color: #757575;">
+              <!-- Email -->
+              <div class="md-form">
+                <input type="email" name="materialLoginFormEmail" class="form-control red-text font-weight-bold" [(ngModel)]="materialLoginFormEmail"
+                  mdbInput>
+                <label for="materialLoginFormEmail">E-mail</label>
+              </div>
+              <!-- Password -->
+              <div class="md-form">
+                <input type="password" name="materialLoginFormPassword" class="form-control text-dark font-weight-bold" [(ngModel)]="materialLoginFormPassword"
+                  mdbInput>
+                <label for="materialLoginFormPassword">Password</label>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <button mdbBtn color="lime" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0 " mdbWavesEffect
+                    type="submit" (click)="login()">Login</button>
+                </div>
+                <div class="col-md-6">
+                  <button mdbBtn color="lime" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+                    type="reset" (click)="reset()">Reset</button>
+                </div>
+              </div>
+            </form>
+          </mdb-body>
+        </mdb-card>
+      </div>
+    </div>
+    <!--Grid row-->
+  </section>
+</div>

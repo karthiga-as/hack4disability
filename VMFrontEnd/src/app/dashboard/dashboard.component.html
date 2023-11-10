@@ -1,0 +1,38 @@
+<div class="h-100">
+  <div class="header-container p-2">
+    <span class="font-weight-bold h5">Volunteering Projects</span>
+  </div>
+  <div class="row dashboard-comp">
+    <div class="row dashboard-radio">
+      <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" (click)="toggleCharts()" id="materialLineChart" checked name="inlineMaterialCharts"
+          mdbInput>
+        <label class="form-check-label" for="materialLineChart">
+          <span class="font-weight-bold h5">Line Chart</span>
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="materialBarChart" name="inlineMaterialCharts" mdbInput>
+        <label class="form-check-label" for="materialBarChart">
+          <span class="font-weight-bold h5">Bar Chart</span>
+        </label>
+      </div>
+
+    </div>
+    <div class="row dashboard-chart">
+      <div style="display: block" class="col-md-6">
+        <span class="dashboard-span font-weight-bold h5 float-left">Top Projects</span>
+        <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions"
+          [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div style="display: block" class="col-md-6">
+        <span class="dashboard-span font-weight-bold h5 float-left">Top Locations</span>
+        <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions"
+          [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

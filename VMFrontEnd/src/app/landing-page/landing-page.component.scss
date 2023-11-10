@@ -1,0 +1,99 @@
+.nav a.white-text:hover {
+  color: #c0b8b8 !important;
+}
+.nav a.dark-grey-text:hover {
+  color: #78909c !important;
+}
+.nav a.indigo-text:hover {
+  color: #727688 !important;
+}
+.menu-bar,
+.nav {
+  display: inline-block;
+  float: left;
+  height: 100%;
+  width: 150px;
+}
+.nav {
+  margin-left: 10px;
+  padding-left: 7px;
+}
+
+.menu-bar a {
+  height: 50px;
+  display: inline-block;
+  float: left;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.navbar .container {
+  margin: 0px;
+  padding: 0px;
+}
+
+.menu-open-bar {
+  width: 200px;
+}
+
+.menu-close-bar,
+.menu-close-bar a {
+  width: 55px !important;
+}
+
+.menu-close-bar a span {
+  display: none;
+}
+
+.app-container {
+  height: 100%;
+}
+.content-container {
+  height: 100%;
+  width: 100%;
+
+  .table-container {
+    height: 10%;
+    m-2 {
+      margin: 0rem !important;
+    }
+  }
+
+  .table-container {
+    height: 90%;
+    padding: 10px;
+    m-2 {
+      margin: 0rem !important;
+    }
+  }
+}
+
+.content-container.menu-open-bar-container {
+  padding-left: 210px;
+}
+
+.content-container.menu-close-bar-container {
+  padding-left: 65px;
+}
+
+.row {
+  height: 91%;
+  display: inherit;
+}
+
+.table {
+  width: 98%;
+  border: 1px solid #dee2e6;
+  tr {
+    th {
+      font-weight: bold;
+      width: 8rem !important;
+    }
+    th,
+    td {
+      padding: 3px;
+      border-right: 1px solid #dee2e6;
+      width: 8rem !important;
+    }
+  }
+}

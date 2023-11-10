@@ -1,0 +1,240 @@
+<div class="h-100">
+  <div class="header-container p-2">
+    <span class="font-weight-bold h5">Event Registration</span>
+    <span class="font-weight-bold h5 float-center baseClass">
+      <label for="baseLocation">Base Location</label>
+      <select (change)="changedata($event)">
+        <option [value]="fixed">Fixed</option>
+        <option [value]="floating">Floating</option>
+        <option [value]="noTransport">No Transport</option>
+      </select>
+    </span>
+    <div class>
+    </div>
+  </div>
+  <div class="row" [class.volunteer-table-show]="isVolunteerTableOpen" [class.volunteer-table-hide]="!isVolunteerTableOpen">
+    <div class="list-area event-list table-responsive " [class.volunteer-table-expand]="isVolunteerFormOpen" [class.volunteer-table-shrink]="!isVolunteerFormOpen">
+      <table mdbTable>
+        <thead>
+          <tr>
+            <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="elementVal" [sortBy]="headElements[i]">
+              {{ head }}
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col">Action </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let el of elementVal; let i = index">
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-10" scope="row">
+              {{ el.eventtitle }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-10">
+              {{ el.baselocation }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-10">
+              {{ el.beneficiaryname }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-10">
+              {{ el.eventcategory }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-8">
+              {{ el.pocid }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-8">
+              {{ el.eventdate }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-8">
+              {{ el.eventstart }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-8">
+              {{ el.eventend }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-8">
+              {{ el.volunteerscount }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-8">
+              {{ el.status }}
+            </td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex" class="w-8">
+              <a class="teal-text">
+                <i class="fa fa-registered" (click)="register(el)"></i>
+              </a>
+              <a class="red-text">
+                <i class="fa fa-close" style="color:red" (click)="remove(el)"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="grey lighten-5 w-100">
+          <tr>
+            <td colspan="10">
+              <mdb-table-pagination (nextPageClick)="onNextPageClick($event)" (previousPageClick)="onPreviousPageClick($event)">
+              </mdb-table-pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="volunteer-form" [class.volunteer-open-form]="isVolunteerFormOpen" [class.volunteer-close-form]="!isVolunteerFormOpen">
+      <mdb-card>
+        <mdb-card-header>{{ formTitle }}
+          <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+            mdbWavesEffect>
+            Register Multiple Events
+          </button>
+        </mdb-card-header>
+        <mdb-body>
+          <form class="text-center" [formGroup]="registerForm" style="color:#757575;" (ngSubmit)="onSubmit()">
+            <div class="md-form">
+              <label for="baseLocation">Base Location</label>
+              <select formControlName="baseLocation" (change)="changedata($event)" (change)="changeCouncilData($event)">
+                <option [value]="location.baseLocationId" [name]="location.baseLocationName" *ngFor="let location of baseLocationList">{{ location.baseLocationName }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="beneficiaryName">Beneficiary Name</label>
+              <select formControlName="beneficiaryName">
+                <option [value]="beneficiary.beneficiaryId" *ngFor="let beneficiary of filteredBeneficiaryNameList">{{ beneficiary.beneficiaryName }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="councilName">Council Name</label>
+              <select formControlName="councilName" (change)="changeProjectData($event)">
+                <option [value]="council.councilId" *ngFor="let council of filteredCouncilNameList">{{ council.councilName }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="projectName">Project Name</label>
+              <select formControlName="projectName" (change)="changeCategoryData($event)">
+                <option [value]="project.projectId" *ngFor="let project of filteredProjectNameList">{{ project.projectName }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="eventCategory">Event Category</label>
+              <select formControlName="eventCategory">
+                <option [value]="category.categoryId" *ngFor="let category of filteredCategoryNameList">{{ category.categoryName }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="eventTitle">Event Title</label>
+              <input type="text" formControlName="eventTitle" class="red-text font-weight-bold" />
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="eventDescription">Event Description</label>
+              <input type="text" formControlName="eventDescription" class="red-text font-weight-bold" />
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="eventDate">Event Date</label>
+              <my-date-picker [options]="myDatePickerOptions" class="dateWidth" formControlName="eventDate"></my-date-picker>
+            </div>
+            <div class="md-form">
+              <label for="eventStartTime">Event Start Time</label>
+              <select formControlName="eventStartTime">
+                <option [value]="eventStartValue" *ngFor="let eventStartValue of eventStartTimeList">{{ eventStartValue }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="eventEndTime">Event End Time</label>
+              <select formControlName="eventEndTime">
+                <option [value]="eventEndValue" *ngFor="let eventEndValue of eventEndTimeList">{{ eventEndValue }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="volunteersHours">Volunteer Hours</label>
+              <input type="text" formControlName="volunteersHours" class="red-text font-weight-bold" />
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="volunteersRequired">Volunteers Required</label>
+              <input type="text" formControlName="volunteersRequired" class="red-text font-weight-bold" />
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="pocId">POC ID</label>
+              <input type="text" formControlName="pocId" class="red-text font-weight-bold" />
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="transportType">Transport Boarding Type</label>
+              <select formControlName="transportType">
+                <option [value]="fixed">Fixed</option>
+                <option [value]="floating">Floating</option>
+                <option [value]="noTransport">No Transport</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="transportBoardingPoint">Transport Boarding Point</label>
+              <select formControlName="transportBoardingPoint" class="ui fluid dropdown" multiple>
+                <option [value]="location.baseLocationId" [name]="location.baseLocationName" *ngFor="let location of baseLocationList">{{ location.baseLocationName }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="transportDropPoint">Transport Drop Point</label>
+              <input type="text" formControlName="transportDropPoint" class="red-text font-weight-bold" />
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="favouriteEvent">Favourite Event</label>
+              <select formControlName="favouriteEvent">
+                <option [value]="yes">Yes</option>
+                <option [value]="no">No</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button type="submit" color="lime" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0 " mdbWavesEffect>
+                  {{ formSubmitValue }}
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button type="reset" color="lime" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0 " mdbWavesEffect
+                  (click)="cancel()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+        </mdb-body>
+      </mdb-card>
+    </div>
+  </div>
+  <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info modal-center modal-top-center" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="heading lead">Register Multiple Events</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="md-form mb-5">
+            <label class="btn btn-default fileCss">
+              <input type="file" class="fileCss" (change)="selectFile($event)" placeholder="Upload file" accept=".xlsx" />
+            </label>
+            <button type="button" class="btn btn-success uploadCss" (click)="upload()">
+              Upload
+            </button>
+            <a class="btn btn-success templateCss" download="Sample Template" target="_blank" href="/assets/file/Worksheet in Volunteering Marathon Application - Design.xlsx">
+              Download File
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

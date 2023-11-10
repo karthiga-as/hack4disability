@@ -1,0 +1,98 @@
+<div class="h-100">
+  <div class="header-container p-2">
+    <span class="font-weight-bold h5">Users</span>
+    <span class="font-weight-bold h5 float-right">
+      <a>
+        <i class="fa fa-user-plus" (click)="openUserForm()"></i>
+      </a>
+    </span>
+    <div class>
+    </div>
+  </div>
+  <div *ngIf="httpResponseMessage" [ngClass]="success" class="red-text font-weight-bold">{{httpResponseMessage}}</div>
+  <div class="row">
+    <div class="users-list table-responsive " [class.user-table-expand]="isUserFormOpen" [class.user-table-shrink]="!isUserFormOpen">
+      <table mdbTable>
+        <thead>
+          <tr>
+            <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="elementVal" [sortBy]="headElements[i]">{{head}}
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col">Action </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let el of elementVal; let i = index">
+            <th *ngIf="i+1 >= firstItemIndex && i < lastItemIndex" scope="row">{{el.firstname}}</th>
+            <td *ngIf="i+1 >= firstItemIndex && i < lastItemIndex">{{el.lastname}}</td>
+            <td *ngIf="i+1 >= firstItemIndex && i < lastItemIndex">{{el.emailid}}</td>
+            <td *ngIf="i+1 >= firstItemIndex && i < lastItemIndex">{{el.employeeid}}</td>
+            <td *ngIf="i+1 >= firstItemIndex && i < lastItemIndex">{{el.role}}</td>
+            <td *ngIf="i + 1 >= firstItemIndex && i < lastItemIndex">
+              <a class="teal-text">
+                <i class="fa fa-pencil" (click)="updateUser(el)"></i>
+              </a>
+              <a class="red-text">
+                <i class="fa fa-times" (click)="removeUser(el.emailid)"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="grey lighten-5 w-100">
+          <tr>
+            <td colspan="6">
+              <mdb-table-pagination (nextPageClick)="onNextPageClick($event)" (previousPageClick)="onPreviousPageClick($event)">
+              </mdb-table-pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="user-form" [class.user-open-form]="isUserFormOpen" [class.user-close-form]="!isUserFormOpen">
+      <mdb-card>
+        <mdb-card-header>{{formTitle}}
+        </mdb-card-header>
+        <mdb-body>
+          <form class="text-center" [formGroup]="userForm" style="color:#757575;" (ngSubmit)="onSubmit()">
+            <div class="md-form">
+              <label for="firstName">First Name</label>
+              <input type="text" formControlName="firstName" class="red-text font-weight-bold">
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="lastName">Last Name</label>
+              <input type="text" formControlName="lastName" class="red-text font-weight-bold">
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="emailId">E-mail</label>
+              <input type="email" *ngIf="!buttonDisabled" formControlName="emailId" class="red-text font-weight-bold">
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="employeeId">Employee ID</label>
+              <input type="text" formControlName="employeeId" class="red-text font-weight-bold">
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="md-form">
+              <label for="role">Role</label>
+              <select formControlName="role">
+                <option [value]="role.roleName" *ngFor="let role of rolesList">{{ role.roleName }}</option>
+              </select>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button mdbBtn color="lime" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0 " mdbWavesEffect
+                  type="submit">{{formSubmitValue}}</button>
+              </div>
+              <div class="col-md-6">
+                <button mdbBtn color="lime" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+                  type="reset">Reset</button>
+              </div>
+            </div>
+          </form>
+        </mdb-body>
+      </mdb-card>
+    </div>
+  </div>

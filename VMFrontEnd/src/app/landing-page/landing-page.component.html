@@ -1,0 +1,54 @@
+<div class="app-container">
+  <mdb-navbar SideClass="navbar navbar-dark lime w-100 z-depth-2">
+    <mdb-navbar-brand class="w-100">
+      <a>
+        <i class="fa fa-bars pr-3" (click)="toggleMenuBar()"></i>
+      </a>
+      <a class="navbar-brand text-dark font-weight-bold" href="#">
+        <!--<img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" class="d-inline-block align-top" alt="">-->
+        {{ title }}
+      </a>
+      <div class="float-right text-dark">
+        <span class="font-weight-bold"> {{ currentUser }} </span>
+        <span> | </span>
+        <a>
+          <i class="fa fa-sign-out pl-2 pt-3 fa-lg" title="Logout" (click)="logout()"></i>
+        </a>
+      </div>
+    </mdb-navbar-brand>
+  </mdb-navbar>
+  <div class="row w-100 m-0">
+    <div class="menu-bar" [class.menu-open-bar]="isMenuOpen" [class.menu-close-bar]="!isMenuOpen">
+      <nav class="nav flex-column grey darken-4 py-4 mb-r font-weight-bold white-text z-depth-2 animated m-0" [class.slideInLeft]="isMenuOpen"
+        [class.menu-open-bar]="isMenuOpen" [class.menu-close-bar]="!isMenuOpen">
+        <a class="nav-link active white-text hoverable" [routerLink]="['/landingPage/user']">
+          <i class="fa fa-user p-3" title="Users"></i>
+          <span>Users</span>
+        </a>
+        <a class="nav-link white-text hoverable" [disabled]="iscomponentDisabled" [routerLink]="['/landingPage/event']">
+          <i class="fa fa-calendar p-3" title="Events"></i>
+          <span>Events</span>
+        </a>
+        <a class="nav-link white-text hoverable" [disabled]="iscomponentDisabled" [routerLink]="['/landingPage/volunteer']">
+          <i class="fa fa-handshake-o p-3" title="Volunteers"></i>
+          <span>Volunteers</span>
+        </a>
+        <a class="nav-link white-text hoverable" [disabled]="iscomponentDisabled" [routerLink]="['/landingPage/postEventTracking']">
+          <i class="fa fa-wpforms p-3" title="Post Event Tracking"></i>
+          <span>Post Event Tracking</span>
+        </a>
+        <a class="nav-link white-text hoverable" [disabled]="iscomponentDisabled" [routerLink]="['/landingPage/dashboard']">
+          <i class="fa fa-bar-chart p-3" title="Dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link white-text hoverable" [disabled]="iscomponentDisabled" [routerLink]="['/landingPage/report']">
+          <i class="fa fa-file p-3" title="Reports"></i>
+          <span>Reports</span>
+        </a>
+      </nav>
+    </div>
+    <div class="grey lighten-3 content-container" [class.menu-open-bar-container]="isMenuOpen" [class.menu-close-bar-container]="!isMenuOpen">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

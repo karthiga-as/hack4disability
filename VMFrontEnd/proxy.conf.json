@@ -1,0 +1,18 @@
+{
+  "/api/eventService": {
+    "target": "http://localhost:8084",
+    "secure": false
+  },
+  "/api/voluntee        rService": {
+    "target": "http://localhost:8085",
+    "secure": false
+  },
+  "/api/codelist": {
+    "target": "http://localhost:8086",
+    "secure": false
+  },
+  "/api/userService": {
+    "target": "http://localhost:8083",
+    "secure": false
+  }
+}

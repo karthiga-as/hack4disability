@@ -1,0 +1,68 @@
+.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.user-form {
+  display: inline-block;
+}
+
+.user-close-form {
+  display: none;
+}
+
+.user-open-form {
+  height: 50%;
+  width: 50%;
+  display: inline-block;
+}
+
+.user-table-shrink {
+  height: 100%;
+  width: 100%;
+}
+
+.user-table-expand {
+  display: inline-block;
+  width: 50%;
+  .table {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    .break-emailID {
+      word-wrap: none;
+      word-break: break-all;
+    }
+  }
+}
+
+.table {
+  th {
+    padding: 0;
+    width: 10%;
+    td {
+      font-size: 0.95em;
+      color: black;
+      font-weight: 600;
+    }
+  }
+  tbody tr {
+    width: 100%;
+    td {
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 0.8em;
+      color: black;
+      font-weight: 400;
+    }
+  }
+  tfoot {
+    td {
+      line-height: 0;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}
